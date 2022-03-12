@@ -6,16 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 /**
  * @description: HelloController
  * @author: mqxu
  * @date: 2022-03-08
  **/
 @RestController
-@AllArgsConstructor
 public class HelloController {
 
     private final Student student;
+
+    public HelloController(Student student) {
+        this.student = student;
+    }
+
 
     @GetMapping(value = "hello")
     public String getHello() {
