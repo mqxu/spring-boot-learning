@@ -5,6 +5,7 @@
     <modules>
         <module>boot-quickstart</module>
         <module>boot-restful</module>
+        <module>boot-config</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

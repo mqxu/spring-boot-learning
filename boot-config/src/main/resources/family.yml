@@ -1,0 +1,18 @@
+family:
+  family-name: happy family
+  father:
+    age: 30
+    name: tom
+  mother:
+    name: rose
+    alias:
+      - rose
+      - alice
+  child:
+    name: jack
+    age: 6
+    friends:
+      - gender: male
+        hobby: play
+      - gender: female
+        hobby: sing
