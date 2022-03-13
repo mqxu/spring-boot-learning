@@ -1,0 +1,18 @@
+#family:
+#  family-name: "happy family"
+#  father:
+#    name: tom
+#    age: 18
+##    age: ${random.int(30,40)}
+#  mother:
+#    alias:
+#      - rose
+#      - alice
+#  child:
+#    name: jack
+#    age: 5
+#    friends:
+#      - hobby: football
+#        gender: male
+#      - hobby: sing
+#        gender: female
