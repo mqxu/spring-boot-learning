@@ -1,0 +1,24 @@
+family:
+  family-name: ENC(m7l6JOxmhyGmFQMK8EYILrHReJfRAkNJLuDOxejBhLdFcVH/kEUf4nEyyNUQbNeO)
+  father:
+    name: tom
+    age: 30
+    email: aaa@sina.com
+  mother:
+    alias:
+      - rose
+      - alice
+  child:
+    name: jack
+    age: 6
+    friends:
+      - hobby: football
+        gender: male
+      - hobby: sing
+        gender: female
+
+# 设置盐值（加密解密密钥），我们配置在这里只是为了测试方便
+# 生产环境中，切记不要这样直接进行设置，可通过环境变量、命令行等形式进行设置。下文会讲
+jasypt:
+encryptor:
+  password: 123456

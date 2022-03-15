@@ -1,0 +1,7 @@
+user:
+  name: zhangsan
+  age: 20
+  book:
+    name: SpringBoot
+    price: 88
+    published-date: 2022-01-01

@@ -1,0 +1,44 @@
+#family:
+#  family-name: "happy family"
+#  father:
+#    name: tom
+#    age: 20
+#    email: aaa@sina.com
+#  mother:
+#    alias:
+#      - rose
+#      - alice
+#  child:
+#    name: jack
+#    age: 6
+#    friends:
+#      - hobby: football
+#        gender: male
+#      - hobby: sing
+#        gender: female
+
+
+#指定需要使用的配置文件
+#spring:
+#  profiles:
+#    active: prod
+
+server:
+  port: 8080
+
+jasypt:
+  encryptor:
+    password: Y6M9fAJQdU7jNp5MW
+
+loggin:
+  path: /user/local/log
+  level:
+    com:
+      favorites: DEBUG
+    org:
+      springframework:
+        web: INFO
+      hibernate: ERROR
+
+
+

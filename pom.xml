@@ -5,8 +5,9 @@
     <modules>
         <module>boot-quickstart</module>
         <module>boot-restful</module>
-        <module>boot-config</module>
+        <module>boot-configuration</module>
     </modules>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,6 +24,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
