@@ -6,6 +6,7 @@
         <module>boot-quickstart</module>
         <module>boot-restful</module>
         <module>boot-configuration</module>
+        <module>boot-orm</module>
     </modules>
 
     <parent>
