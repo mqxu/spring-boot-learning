@@ -7,6 +7,7 @@
         <module>boot-restful</module>
         <module>boot-configuration</module>
         <module>boot-orm</module>
+        <module>boot-multi-datasource</module>
     </modules>
 
     <parent>

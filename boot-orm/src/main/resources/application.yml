@@ -1,15 +1,28 @@
 spring:
   datasource:
     driver-classs-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/spring_boot?useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/spring_boot?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true
     username: root
     password: 123456
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
+    database: MYSQL
+    open-in-view: false
+    hibernate:
+      hbm2ddl:
+        auto: update
     show-sql: true
+
+mybatis:
+  #  指定相应接口对应的xml文件所在目录
+  mapper-locations: classpath:mapper/*.xml
+  #  实体类所在包
+  type-aliases-package: com.mqxu.boot.orm.mybatis.domain
+  configuration:
+    # mybatis开启驼峰式命名
+    map-underscore-to-camel-case: true
+
+dozer:
+  mapping-files: classpath:/dozer/dozer-mapping.xml

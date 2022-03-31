@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mqxu.boot.orm.mybatis.mapper.StudentMapper">
+    <resultMap id="studentMap" type="Student">
+        <id column="student_id" property="studentId"/>
+        <result column="student_name" property="studentName"/>
+        <result column="hometown" property="hometown"/>
+        <result column="birthday" property="birthday"/>
+        <association property="clazz" javaType="Clazz">
+            <id column="clazz_id" property="clazzId"/>
+            <result column="clazz_name" property="clazzName"/>
+        </association>
+        <collection property="courses" ofType="Course">
+            <id column="course_id" property="courseId"/>
+            <result column="course_name" property="courseName"/>
+        </collection>
+    </resultMap>
+
+    <select id="findManyByOne" resultMap="studentMap">
+        SELECT s.student_id, s.student_name, s.hometown, s.birthday, c.clazz_id, c.clazz_name
+        FROM t_student s,
+             t_clazz c
+        WHERE s.student_id = #{studentId}
+          AND s.clazz_id = c.clazz_id
+    </select>
+
+    <select id="getStudent" resultMap="studentMap">
+        SELECT s.student_id,
+               student_name,
+               s.hometown,
+               s.birthday,
+               c.clazz_id,
+               c.cLazz_name,
+               cc.course_id,
+               cc.course_name
+        FROM t_student s
+                 LEFT JOIN t_clazz c
+                           ON s.clazz_id = c.clazz_id
+                 LEFT JOIN t_course_student ts
+                           ON s.student_id = ts.student_id
+                 LEFT JOIN t_course cc
+                           ON ts.course_id = cc.course_id
+        WHERE s.student_id = #{studentId}
+    </select>
+    <insert id="insert">
+        INSERT INTO t_student (clazz_id, student_name, hometown, birthday)
+        VALUES (#{clazzId}, #{studentName}, #{hometown}, #{birthday})
+    </insert>
+
+    <insert id="batchInsert" parameterType="Student">
+        INSERT INTO t_student
+        (clazz_id, student_name, hometown, birthday) VALUES
+        <foreach collection="students" item="student" index="index" separator=",">
+            (#{student.clazzId}, #{student.studentName},#{student.hometown},#{student.birthday})
+        </foreach>
+    </insert>
+
+    <delete id="batchDelete" parameterType="Integer">
+        DELETE FROM t_student
+        WHERE student_id IN
+        <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="students" item="student" index="index" open="" close="" separator=";">
+            UPDATE t_student t
+            <set>
+                t.student_name = #{student.studentName}
+            </set>
+            WHERE t.student_id = #{student.studentId}
+        </foreach>
+    </update>
+
+    <select id="findStudentBy" resultType="Student" parameterType="Student">
+        SELECT *
+        FROM t_student
+        <where>
+            <if test="student.studentId !=null ">
+                student_id = #{student.studentId}
+            </if>
+            <if test="student.studentName !=null ">
+                AND student_name = #{student.studentName}
+            </if>
+            <if test="student.hometown !=null">
+                AND hometown LIKE concat('%',#{student.hometown},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

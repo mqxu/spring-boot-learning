@@ -2,6 +2,7 @@ package com.mqxu.boot.orm.dao;
 
 import com.mqxu.boot.orm.entity.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @author: mqxu
  * @date: 2022-03-18
  **/
+@RepositoryRestResource(path="articles")
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
     /**
@@ -20,4 +22,5 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
      * @return List<Article>
      */
     List<Article> findByAuthor(String author);
+
 }

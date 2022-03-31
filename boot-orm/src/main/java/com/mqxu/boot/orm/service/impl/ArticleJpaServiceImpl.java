@@ -1,10 +1,8 @@
 package com.mqxu.boot.orm.service.impl;
 
-import com.mqxu.boot.orm.dao.ArticleDao;
 import com.mqxu.boot.orm.dao.ArticleRepository;
 import com.mqxu.boot.orm.entity.Article;
 import com.mqxu.boot.orm.service.ArticleService;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

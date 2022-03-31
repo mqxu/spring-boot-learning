@@ -2,14 +2,10 @@ package com.mqxu.boot.orm.controller;
 
 import com.mqxu.boot.orm.common.AjaxResponse;
 import com.mqxu.boot.orm.entity.Article;
-import com.mqxu.boot.orm.service.ArticleService;
-import com.mqxu.boot.orm.service.impl.ArticleJdbcServiceImpl;
 import com.mqxu.boot.orm.service.impl.ArticleJpaServiceImpl;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @description:

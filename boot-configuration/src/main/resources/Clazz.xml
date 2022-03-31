@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="com.mqxu.boot.orm.mybatis.domain.Clazz">
+        <table name="t_clazz" schema="spring_boot" catalog=""/>
+        <attributes>
+            <id name="clazzId">
+                <column name="clazz_id"/>
+            </id>
+        </attributes>
+    </entity>
+</entity-mappings>
