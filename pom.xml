@@ -9,6 +9,7 @@
         <module>boot-orm</module>
         <module>boot-multi-datasource</module>
         <module>boot-resources-template</module>
+        <module>boot-filter-interceptor</module>
     </modules>
 
     <parent>
