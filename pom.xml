@@ -8,6 +8,7 @@
         <module>boot-configuration</module>
         <module>boot-orm</module>
         <module>boot-multi-datasource</module>
+        <module>boot-resources-template</module>
     </modules>
 
     <parent>
