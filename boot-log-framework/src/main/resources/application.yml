@@ -1,0 +1,10 @@
+#logging:
+#  level: {
+#    com.mqxu.boot.log.controller: trace
+#  }
+
+spring:
+  profiles:
+    active: dev
+
+

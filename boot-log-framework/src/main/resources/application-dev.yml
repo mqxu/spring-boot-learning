@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+#logging:
+#  level:
+#    root: info
+#    com.mqxu.boot.log.controller: debug
+#  file:
+#    name: /Users/mqxu/Desktop/logs/boot-log.log
+#  logback:
+#    rollingpolicy:
+#      max-file-size: 10KB
+#      max-history: 7
+#  pattern:
+#    console: '%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}) - %cyan(%msg%n)'
+#    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger : %msg%n'

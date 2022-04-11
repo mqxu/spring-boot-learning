@@ -12,6 +12,8 @@
         <module>boot-filter-interceptor</module>
         <module>boot-embed-server</module>
         <module>boot-exception</module>
+        <module>boot-log-framework</module>
+        <module>boot-basic</module>
     </modules>
 
     <parent>
