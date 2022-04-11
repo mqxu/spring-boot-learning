@@ -1,5 +1,6 @@
 package com.mqxu.boot.runner;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +16,7 @@ import java.util.Arrays;
  * @date: 2022-04-04
  **/
 @Configuration
+@Slf4j
 public class BeanRunner {
     @Bean
     @Order(1)
@@ -22,7 +24,7 @@ public class BeanRunner {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) {
-                System.out.println("BeanCommandLineRunner run1()" + Arrays.toString(args));
+                log.info("BeanCommandLineRunner run1()" + Arrays.toString(args));
             }
         };
     }
@@ -33,7 +35,7 @@ public class BeanRunner {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) {
-                System.out.println("BeanCommandLineRunner run2()" + Arrays.toString(args));
+                log.info("BeanCommandLineRunner run2()" + Arrays.toString(args));
             }
         };
     }
@@ -44,7 +46,7 @@ public class BeanRunner {
         return new ApplicationRunner() {
             @Override
             public void run(ApplicationArguments args) {
-                System.out.println("BeanApplicationRunner run3()" + Arrays.toString(args.getSourceArgs()));
+                log.info("BeanApplicationRunner run3()" + Arrays.toString(args.getSourceArgs()));
             }
         };
     }

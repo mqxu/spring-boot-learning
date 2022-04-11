@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date: 2022-04-04
  **/
 @Slf4j
-//@Component
+@Component
 public class CustomHandlerInterceptor implements HandlerInterceptor {
 
     @Resource

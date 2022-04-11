@@ -24,11 +24,11 @@ public class BeanInitListener implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        log.info("类初始化 afterPropertiesSet方法");
+        log.info("类初始化 afterPropertiesSet 方法");
     }
 
     @PostConstruct
     void method() {
-        log.info("类初始化 postConstruct注解方法!");
+        log.info("类初始化 postConstruct 注解方法!");
     }
 }

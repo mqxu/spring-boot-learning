@@ -1,5 +1,6 @@
 package com.mqxu.boot;
 
+import com.mqxu.boot.event.MyEvent;
 import com.mqxu.boot.listener.MyListener1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,5 +21,7 @@ public class Application {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         //装载监听
         context.addApplicationListener(new MyListener1());
+        // 发布事件
+        context.publishEvent(new MyEvent("测试事件"));
     }
 }
