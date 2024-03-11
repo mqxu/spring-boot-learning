@@ -1,0 +1,9 @@
+family:
+  family-name: "happy family"
+  father: ${father.name:zhangsan}
+  mother: "玫瑰"
+  child: "汤姆"
+  years: ${random.int(5,10)}
+
+father:
+  name: "极客空间geek"

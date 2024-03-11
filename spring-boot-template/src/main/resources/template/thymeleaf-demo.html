@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+
+<div class="container">
+    <table class="table table-dark table-hover">
+        <tr>
+            <td>id</td>
+            <td>作者</td>
+            <td>标题</td>
+        </tr>
+
+        <tr th:each="item : ${articles}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.author}"></td>
+            <td th:text="${item.title}"></td>
+        </tr>
+    </table>
+
+    <!-- Thymeleaf 基础语法1： 变量表达式 ${}-->
+    <div class="row">
+        <div class="col-4">
+            <label for="input1" class="form-label">id</label>
+            <input type="text" class="form-control" id="input1" th:value="${articles[0].id}">
+        </div>
+        <div class="col-4">
+            <label for="input2" class="form-label">author</label>
+            <input type="text" class="form-control" id="input2" th:value="${articles[0].author}">
+        </div>
+        <div class="col-4">
+            <label for="input3" class="form-label">title</label>
+            <input type="text" class="form-control" id="input3" th:value="${articles[0].title}">
+        </div>
+    </div>
+
+    <!-- Thymeleaf 基础语法2： 选择变量表达式 *{}-->
+    <div class="row" th:object="${articles[1]}">
+        <div class="col-4">
+            <label for="input4" class="form-label">id</label>
+            <input type="text" class="form-control" id="input4" th:value="*{id}">
+        </div>
+        <div class="col-4">
+            <label for="input5" class="form-label">author</label>
+            <input type="text" class="form-control" id="input5" th:value="*{author}">
+        </div>
+        <div class="col-4">
+            <label for="input6" class="form-label">title</label>
+            <input type="text" class="form-control" id="input6" th:value="*{title}">
+        </div>
+    </div>
+
+    <br>
+    <!-- Thymeleaf 基础语法4： 字符串连接、数学运算、布尔逻辑、三目运算符等-->
+    <br>
+    <div th:text="${'我是：' + (articles[2].author != null ? articles[2].author : '没有内容' )}"></div>
+
+    <table class="table table-hover">
+        <tr>
+            <td>下标</td>
+            <td>序号</td>
+            <td>id</td>
+            <td>作者</td>
+            <td>标题</td>
+        </tr>
+
+        <tr th:each="item,stat : ${articles}" th:class="${stat.even} ? 'even' : 'odd'">
+            <td th:text="${stat.index}"></td>
+            <td th:text="${stat.count}"></td>
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.author}"></td>
+            <td th:text="${item.title}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
