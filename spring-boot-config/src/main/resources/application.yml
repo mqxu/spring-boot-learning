@@ -1,0 +1,28 @@
+#spring:
+#  profiles:
+#    active: prod
+#server:
+#  port: 8888
+
+
+family:
+  family-name: "happy family"
+  father: "JackJack"
+  mother: "Rose"
+  child: "Tom"
+  years: ${random.int(5,10)}
+
+
+person:
+  name: 张飞
+  age: 20
+  happy: false
+  birthday: 2001/07/08
+  maps: { k1:v1,k2:v2 }
+  lists:
+    - code
+    - girl
+    - music
+  dog:
+    name: 虎子
+    age: ${random.int(1,20}
