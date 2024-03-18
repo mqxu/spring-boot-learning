@@ -38,7 +38,7 @@ public class TemplateController {
         List<Article> articles = Arrays.asList(
                 new Article(1, "张三", "Java")
                 , new Article(2, "张三丰", "Spring")
-                , new Article(3, "张三风", "SpringBoot")
+                , new Article(3, "张三风", "Spring Boot")
         );
         model.addAttribute("articles", articles);
         return "thymeleaf-demo";
@@ -52,7 +52,7 @@ public class TemplateController {
         List<Article> articles = Arrays.asList(
                 new Article(1, "张三", "Java")
                 , new Article(2, "张三丰", "Spring")
-                , new Article(3, "张三风", "SpringBoot")
+                , new Article(3, "张三风", "Spring Boot")
         );
 
         request.setAttribute("name2", "world");
