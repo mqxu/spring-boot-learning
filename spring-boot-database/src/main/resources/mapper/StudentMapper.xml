@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.mqxu.boot.database.mapper.StudentMapper">
+    <resultMap id="BaseResultMap" type="Student">
+        <id column="student_id" jdbcType="INTEGER" property="studentId"/>
+        <result column="clazz_id" jdbcType="INTEGER" property="clazzId"/>
+        <result column="student_name" jdbcType="VARCHAR" property="studentName"/>
+        <result column="hometown" jdbcType="VARCHAR" property="hometown"/>
+        <result column="birthday" jdbcType="DATE" property="birthday"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `student_id`,
+        `clazz_id`,
+        `student_name`,
+        `hometown`,
+        `birthday`
+    </sql>
+
+    <insert id="insert" keyColumn="student_id" keyProperty="studentId"
+            parameterType="top.mqxu.boot.database.entity.Student" useGeneratedKeys="true">
+        insert into `t_student` (`clazz_id`, `student_name`, `hometown`,
+                                 `birthday`)
+        values (#{clazzId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{hometown,jdbcType=VARCHAR},
+                #{birthday,jdbcType=DATE})
+    </insert>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `t_student`
+        where `student_id` = #{studentId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from `t_student`
+        where `student_id` = #{studentId,jdbcType=INTEGER}
+    </delete>
+
+    <update id="updateByPrimaryKeySelective" parameterType="Student">
+        update `t_student`
+        <set>
+            <if test="clazzId != null">
+                `clazz_id` = #{clazzId,jdbcType=INTEGER},
+            </if>
+            <if test="studentName != null">
+                `student_name` = #{studentName,jdbcType=VARCHAR},
+            </if>
+            <if test="hometown != null">
+                `hometown` = #{hometown,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                `birthday` = #{birthday,jdbcType=DATE},
+            </if>
+        </set>
+        where `student_id` = #{studentId,jdbcType=INTEGER}
+    </update>
+
+    <insert id="batchInsert" parameterType="Student">
+        insert into t_student values
+        <foreach collection="students" item="student" index="index" separator=",">
+            (#{student.studentId}, #{student.clazzId}, #{student.studentName}, #{student.hometown}, #{student.birthday})
+        </foreach>
+    </insert>
+
+    <delete id="batchDelete" parameterType="int">
+        delete
+        from t_student
+        where student_id in
+        <foreach collection="idList" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="students" item="item" index="index" open="" close="" separator=";">
+            update t_student t
+            <set>
+                <if test="item.clazzId != null">
+                    `clazz_id` = #{item.clazzId,jdbcType=INTEGER},
+                </if>
+                <if test="item.studentName != null">
+                    `student_name` = #{item.studentName,jdbcType=VARCHAR},
+                </if>
+                <if test="item.hometown != null">
+                    `hometown` = #{item.hometown,jdbcType=VARCHAR},
+                </if>
+                <if test="item.birthday != null">
+                    `birthday` = #{item.birthday,jdbcType=DATE},
+                </if>
+            </set>
+            where t.student_id = #{item.studentId}
+        </foreach>
+    </update>
+
+    <select id="selectByDynamicSql" parameterType="Student" resultType="Student">
+        select *
+        from t_student
+        where 1 = 1
+        <choose>
+            <when test="clazzId != null">
+                and clazz_id = #{clazzId}
+            </when>
+            <when test="hometown != null">
+                and hometown like "%"#{hometown}"%"
+            </when>
+        </choose>
+    </select>
+
+    <resultMap id="studentMap" type="student">
+        <id column="student_id" property="studentId"/>
+        <result column="student_name" property="studentName"/>
+        <result column="hometown" property="hometown"/>
+        <result column="birthday" property="birthday"/>
+        <association property="clazz" javaType="Clazz">
+            <id column="clazz_id" property="clazzId"/>
+            <result column="clazz_name" property="clazzName"/>
+        </association>
+        <collection property="courses" ofType="Course">
+            <id column="course_id" property="courseId"/>
+            <result column="course_name" property="courseName"/>
+        </collection>
+    </resultMap>
+
+    <select id="getStudentManyToOne" resultMap="studentMap">
+        SELECT s.student_id, s.student_name, s.hometown, s.birthday, c.clazz_id, c.clazz_name
+        FROM t_student s,
+             t_clazz c
+        WHERE s.student_id = #{studentId}
+          AND s.clazz_id = c.clazz_id
+    </select>
+
+    <select id="getStudent" resultMap="studentMap" parameterType="int">
+        SELECT s.student_id,
+               s.student_name,
+               s.hometown,
+               s.birthday,
+               c.clazz_id,
+               c.clazz_name,
+               cc.course_id,
+               cc.course_name
+        FROM t_student s
+                 LEFT JOIN t_clazz c ON s.clazz_id = c.clazz_id
+                 LEFT JOIN t_course_student ts ON s.student_id = ts.student_id
+                 LEFT JOIN t_course cc ON ts.course_id = cc.course_id
+        WHERE s.student_id = #{studentId}
+    </select>
+</mapper>
